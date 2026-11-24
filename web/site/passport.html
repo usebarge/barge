@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barge | Agent passports</title>
+<meta name="description" content="Every agent can carry a passport on Robinhood Chain: its name, where it was born, its latest .barge fingerprint and every barge it has been through.">
+<meta name="theme-color" content="#0f0f0f">
+<meta property="og:title" content="Barge | Agent passports on Robinhood Chain">
+<meta property="og:image" content="https://bargedot.fun/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/barge.css">
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 80 100"><path fill="#ece7dd" fill-rule="evenodd" d="M0 0H74L63.5 44H0Z M19.5 16V28H51.5V16Z"/><path fill="#8f8f93" fill-rule="evenodd" d="M0 56H80L68.5 100H0Z M19.5 72V84H55.5V72Z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <nav class="left" aria-label="Main">
+      <a href="index.html">Overview</a>
+      <a href="app.html">App</a>
+    </nav>
+    <a class="brand" href="index.html" aria-label="Barge home"><svg class="mark"><use href="#mark"/></svg><span>BARGE</span></a>
+    <div class="right">
+      <nav aria-label="More"><a href="harbor.html">Harbor</a><a href="passport.html" aria-current="page">Passports</a></nav>
+      <a class="btn sm solid" href="app.html">Open app</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="orch-head wrap">
+    <div>
+      <p class="kicker">Agent passports · Robinhood Chain</p>
+      <h1>Every agent, <em>on the record.</em></h1>
+      <p class="sub">A passport carries an agent's name, the platform it was born on, the fingerprint of its latest .barge package and every barge it has been through. Issued from the app, stamped on Robinhood Chain, readable by anyone.</p>
+    </div>
+    <dl class="stats">
+      <div><dt>Passports</dt><dd id="pTotal">·</dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap" id="one" hidden>
+    <article class="passport" id="pp">
+      <div class="pp-top">
+        <div class="pp-brand"><svg class="mark"><use href="#mark"/></svg><span>BARGE PASSPORT</span></div>
+        <span class="mono dim">Robinhood Chain · 4663</span>
+      </div>
+      <div class="pp-main">
+        <div class="pp-seal" aria-hidden="true"><svg><use href="#mark"/></svg></div>
+        <div class="pp-id">
+          <p class="mono dim">Passport No.</p>
+          <p class="pp-no" id="ppNo">·</p>
+          <h2 id="ppName">·</h2>
+        </div>
+      </div>
+      <dl class="pp-fields">
+        <div><dt>Holder</dt><dd><a id="ppHolder" target="_blank" rel="noopener">·</a></dd></div>
+        <div><dt>Born on</dt><dd id="ppSource">·</dd></div>
+        <div><dt>Issued</dt><dd id="ppIssued">·</dd></div>
+        <div><dt>Last stamp</dt><dd id="ppUpdated">·</dd></div>
+        <div><dt>Version</dt><dd id="ppVersion">·</dd></div>
+        <div><dt>Package fingerprint</dt><dd class="mono-val" id="ppFp">·</dd></div>
+      </dl>
+      <div class="pp-lineage">
+        <p class="mono dim">Lineage</p>
+        <ol id="ppRings"></ol>
+      </div>
+      <div class="pp-actions" id="ppActions"></div>
+      <div class="pp-mrz mono" id="ppMrz" aria-hidden="true"></div>
+    </article>
+  </section>
+
+  <section class="wrap" id="many" hidden>
+    <div class="pp-list" id="ppList"></div>
+  </section>
+
+  <section class="wrap" id="none" hidden>
+    <div class="pp-empty">
+      <p class="kicker" id="noneKicker">Not issued yet</p>
+      <h3 id="noneTitle">Passports open with V3.</h3>
+      <p id="noneText">Load an agent in the app and issue its passport from the Share card.</p>
+      <a class="btn solid" href="app.html">Open the app <span class="arrow">→</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Barge home"><svg class="mark"><use href="#mark"/></svg><span>BARGE</span></a>
+    <nav aria-label="Footer">
+      <a href="app.html">App</a>
+      <a href="harbor.html">Harbor</a>
+      <a href="passport.html">Passports</a>
+      <a href="index.html#token">$BARGE</a>
+    </nav>
+    <small>© 2026 Barge</small>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/engine.js"></script>
+<script src="assets/js/web3.js"></script>
+<script src="assets/js/passport.js"></script>
+</body>
+</html>

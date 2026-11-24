@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barge | App</title>
+<meta name="description" content="Read an AI agent from one platform and barge it onto another, in your browser.">
+<meta name="theme-color" content="#0f0f0f">
+<meta property="og:title" content="Barge | Move your AI agent to any platform">
+<meta property="og:image" content="https://bargedot.fun/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/barge.css">
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 80 100"><path fill="#ece7dd" fill-rule="evenodd" d="M0 0H74L63.5 44H0Z M19.5 16V28H51.5V16Z"/><path fill="#8f8f93" fill-rule="evenodd" d="M0 56H80L68.5 100H0Z M19.5 72V84H55.5V72Z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <nav class="left" aria-label="Main">
+      <a href="index.html">Overview</a>
+      <a href="app.html" aria-current="page">App</a>
+    </nav>
+    <a class="brand" href="index.html" aria-label="Barge home"><svg class="mark"><use href="#mark"/></svg><span>BARGE</span></a>
+    <div class="right">
+      <nav aria-label="More"><a href="harbor.html">Harbor</a><a href="index.html#lineage">Lineage</a><a href="passport.html">Passports</a></nav>
+      <span class="mono local"><span class="lock"></span>Runs locally</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="load wrap" id="load">
+    <div class="load-head">
+      <p class="kicker">Read · Choose · Land · Ring</p>
+      <h1>Load the agent <em>you already have.</em></h1>
+      <p class="sub">Drop the folder your agent lives in. Barge reads it right here, in this tab. Nothing is uploaded.</p>
+    </div>
+
+    <div class="drop" id="drop" tabindex="0" role="button" aria-describedby="dropHint">
+      <div class="drop-inner">
+        <svg class="drop-mark" aria-hidden="true"><use href="#mark"/></svg>
+        <p class="drop-title">Drop a folder, files, a .zip or a .barge package</p>
+        <p class="drop-hint" id="dropHint">Project folders, ~/.codex, an OpenClaw workspace or a single CLAUDE.md all work.</p>
+        <div class="drop-actions">
+          <label class="btn solid">Choose folder<input type="file" id="pickDir" webkitdirectory directory multiple hidden></label>
+          <label class="btn">Choose files<input type="file" id="pickFiles" multiple hidden></label>
+        </div>
+      </div>
+      <div class="drop-busy" id="busy" hidden><span class="spinner"></span><span id="busyText">Reading…</span></div>
+    </div>
+    <form class="gh" id="ghForm" autocomplete="off">
+      <div class="gh-label"><span class="gh-tag">Repo</span><span class="mono">Move any public GitHub repo</span></div>
+      <div class="gh-row">
+        <label class="gh-field"><span class="sr-only">Public GitHub repo</span><input id="ghUrl" type="text" inputmode="url" spellcheck="false" placeholder="github.com/owner/repo"></label>
+        <button class="btn solid" type="submit">Read repo <span class="arrow">→</span></button>
+      </div>
+      <p class="gh-hint">Paste a public repo or a folder inside it. Only its agent files are read, straight from GitHub into this tab.</p>
+      <p class="gh-hint cli-hint"><span class="gh-tag">V3</span> From your terminal, in the folder your agent lives in: <code>npx -y https://bargedot.fun/bargedot.tgz cursor</code> or <code>… everywhere</code></p>
+    </form>
+    <p class="error" id="loadError" role="alert" hidden></p>
+
+    <div class="samples">
+      <p class="mono dim">Or start from a sample agent</p>
+      <div class="sample-row" id="sampleRow"></div>
+    </div>
+
+    <div class="reads">
+      <p class="mono dim">Files Barge understands</p>
+      <dl>
+        <div><dt>Claude Code</dt><dd>CLAUDE.md · .claude/commands · .claude/skills · .claude/agents · .claude/settings.json · .mcp.json</dd></div>
+        <div><dt>Codex CLI</dt><dd>AGENTS.md · config.toml · prompts/ · skills/</dd></div>
+        <div><dt>Cursor</dt><dd>.cursor/rules · .cursorrules · .cursor/commands · .cursor/mcp.json</dd></div>
+        <div><dt>Gemini CLI</dt><dd>GEMINI.md · .gemini/settings.json · .gemini/commands</dd></div>
+        <div><dt>OpenClaw</dt><dd>AGENTS.md · SOUL.md · IDENTITY.md · USER.md · TOOLS.md · MEMORY.md · memory/ · HEARTBEAT.md · skills/</dd></div>
+        <div><dt>Windsurf</dt><dd>.windsurf/rules · .windsurf/workflows · .windsurfrules · mcp_config.json</dd></div>
+        <div><dt>Cline</dt><dd>.clinerules · .clinerules/workflows · .clinerules/skills · cline_mcp_settings.json</dd></div>
+        <div><dt>Goose</dt><dd>.goosehints · goose/config.yaml</dd></div>
+        <div><dt>Aider</dt><dd>CONVENTIONS.md · .aider.conf.yml</dd></div>
+        <div><dt>Hermes Agent</dt><dd>SOUL.md · AGENTS.md · memories/ · skills/ · config.yaml</dd></div>
+        <div><dt>GitHub Copilot</dt><dd>.github/copilot-instructions.md · .github/instructions · .github/prompts · .github/agents · .github/skills · .vscode/mcp.json</dd></div>
+        <div><dt>OpenCode</dt><dd>AGENTS.md · opencode.json · .opencode/commands · .opencode/agents · .opencode/skills</dd></div>
+        <div><dt>Kiro</dt><dd>.kiro/steering · .kiro/skills · .kiro/settings/mcp.json</dd></div>
+        <div><dt>Roo Code</dt><dd>.roo/rules · .roo/commands · .roo/skills · .roomodes · .roo/mcp.json</dd></div>
+        <div><dt>Kilo Code</dt><dd>.kilo/rules · .kilo/commands · .kilo/agents · .kilo/skills · kilo.jsonc · .kilocode/</dd></div>
+        <div><dt>Antigravity</dt><dd>AGENTS.md · .agents/rules · .agents/agents · .agents/skills · mcp_config.json</dd></div>
+        <div><dt>Qwen Code</dt><dd>QWEN.md · .qwen/settings.json · .qwen/commands · .qwen/agents · .qwen/skills</dd></div>
+        <div><dt>Factory Droid</dt><dd>AGENTS.md · .factory/commands · .factory/droids · .factory/skills · .factory/mcp.json</dd></div>
+        <div><dt>Zed</dt><dd>.rules · .zed/settings.json</dd></div>
+        <div><dt>Continue</dt><dd>.continue/rules · .continue/prompts · .continue/mcpServers</dd></div>
+        <div><dt>Junie</dt><dd>.junie/AGENTS.md · .junie/guidelines.md · .junie/skills · .junie/mcp/mcp.json</dd></div>
+        <div><dt>Amp</dt><dd>AGENTS.md · .agents/skills · .amp/settings.json</dd></div>
+        <div><dt>Augment</dt><dd>.augment/rules · .augment/commands · .augment/settings.json</dd></div>
+        <div><dt>Trae</dt><dd>.trae/rules · .trae/skills · .trae/mcp.json</dd></div>
+        <div><dt>Crush</dt><dd>CRUSH.md · .crush/skills · .crush.json</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="work wrap" id="work" hidden>
+    <aside class="side">
+
+      <div class="card agent">
+        <div class="card-head"><span class="mono dim">Agent</span><button class="link" id="reset" type="button">Change agent</button></div>
+        <label class="name-field"><span class="sr-only">Agent name</span><input id="agentName" type="text" maxlength="60" spellcheck="false" autocomplete="off"></label>
+        <dl class="facts">
+          <div><dt>Detected</dt><dd id="detected">·</dd></div>
+          <div><dt>Files read</dt><dd id="filesRead">·</dd></div>
+          <div><dt>Secrets removed</dt><dd id="secretCount">·</dd></div>
+          <div><dt>Agent ID</dt><dd id="agentId" class="mono-val">·</dd></div>
+        </dl>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><span class="mono dim">New platform</span></div>
+        <div class="dest" id="dest" role="radiogroup" aria-label="Destination platform"></div>
+      </div>
+
+      <div class="card land">
+        <div class="tally" id="tally">
+          <div><b id="cAsIs">0</b><span><i class="sq as-is"></i>As-is</span></div>
+          <div><b id="cConv">0</b><span><i class="sq converted"></i>Converted</span></div>
+          <div><b id="cNone">0</b><span><i class="sq none"></i>Kept</span></div>
+        </div>
+        <button class="btn solid wide" id="download" type="button">Download for <span id="destName">·</span> <span class="arrow">↓</span></button>
+        <button class="btn wide everywhere" id="everywhere" type="button"><span class="gh-tag">V3</span> Barge everywhere · all 25 platforms <span class="arrow">↓</span></button>
+        <button class="btn wide" id="savePkg" type="button">Save .barge package</button>
+        <p class="receipt" id="receipt" hidden></p>
+      </div>
+
+      <div class="card share">
+        <div class="card-head"><span class="mono dim">Share and prove</span></div>
+        <button class="btn wide" id="publishBtn" type="button" aria-expanded="false" aria-controls="publishBox">Publish to the Harbor</button>
+        <div class="publish" id="publishBox" hidden>
+          <label class="desc-field"><span class="mono dim">Description</span><textarea id="pubDesc" maxlength="240" rows="3" placeholder="What is this agent good at?"></textarea></label>
+          <button class="btn solid wide" id="pubGo" type="button">Sign and publish</button>
+          <p class="hint">Your wallet signs a message to prove you are the author. No transaction, no fee. Secrets are stripped again before anything is stored.</p>
+        </div>
+        <button class="btn wide" id="ringBtn" type="button">Add a ring on Robinhood Chain</button>
+        <button class="btn wide" id="passportBtn" type="button" hidden><span class="gh-tag">V3</span> Issue agent passport</button>
+        <p class="hint" id="ringHint">Writes this barge to your agent's lineage on Robinhood Chain. You only pay the network fee.</p>
+        <p class="wallet-line" id="walletLine" hidden><span class="lock"></span><span class="mono" id="wl"></span><button class="link" id="wlOff" type="button">Disconnect</button></p>
+        <p class="receipt" id="shareMsg" hidden></p>
+        <div class="badge-box" id="badgeBox" hidden>
+          <p class="mono dim">README badge for this repo</p>
+          <img src="badge.svg" width="130" height="20" alt="Barge this agent">
+          <pre class="badge-code" id="badgeCode"></pre>
+          <button class="btn wide" id="badgeCopy" type="button">Copy badge markdown</button>
+        </div>
+      </div>
+
+    </aside>
+
+    <div class="main">
+      <div class="tabs" role="tablist" aria-label="Details">
+        <button role="tab" id="tab-items" aria-controls="panel-items" aria-selected="true" class="tab">Manifest <span class="count" id="nItems">0</span></button>
+        <button role="tab" id="tab-files" aria-controls="panel-files" aria-selected="false" class="tab" tabindex="-1">Files <span class="count" id="nFiles">0</span></button>
+        <button role="tab" id="tab-secrets" aria-controls="panel-secrets" aria-selected="false" class="tab" tabindex="-1">Secrets <span class="count" id="nSecrets">0</span></button>
+        <button role="tab" id="tab-skipped" aria-controls="panel-skipped" aria-selected="false" class="tab" tabindex="-1">Skipped <span class="count" id="nSkipped">0</span></button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-items" aria-labelledby="tab-items">
+        <p class="panel-intro">Untick anything that should stay behind. Each item shows how it lands on <b id="destName2">·</b>.</p>
+        <div id="groups"></div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-files" aria-labelledby="tab-files" hidden>
+        <div class="files">
+          <ul class="file-list" id="fileList"></ul>
+          <div class="viewer">
+            <div class="viewer-head"><span id="viewerPath" class="mono-val">·</span><span id="viewerSize" class="dim"></span></div>
+            <pre id="viewerBody"></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-secrets" aria-labelledby="tab-secrets" hidden>
+        <p class="panel-intro">These were removed before anything was written. Tools get a variable to fill in. Secrets found in text are replaced with [redacted].</p>
+        <ul class="rows" id="secretList"></ul>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-skipped" aria-labelledby="tab-skipped" hidden>
+        <p class="panel-intro">Files Barge did not use, and why.</p>
+        <ul class="rows" id="skippedList"></ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/engine.js"></script>
+<script src="assets/js/samples.js"></script>
+<script src="assets/js/web3.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

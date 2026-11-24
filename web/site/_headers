@@ -1,0 +1,18 @@
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://rpc.mainnet.chain.robinhood.com https://api.github.com https://raw.githubusercontent.com; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  X-Frame-Options: DENY
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/vendor/*
+  Cache-Control: public, max-age=86400

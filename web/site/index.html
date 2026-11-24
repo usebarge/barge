@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barge | Move your AI agent to any platform</title>
+<meta name="description" content="Barge moves an AI agent's instructions, memory, skills, commands, tools and permissions from one platform to another. 25 platforms, including Claude Code, Codex CLI, Cursor, GitHub Copilot, Gemini CLI and Windsurf. It runs in your browser, and every crossing can be recorded on Robinhood Chain.">
+<meta name="theme-color" content="#0f0f0f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Barge | Move your AI agent to any platform">
+<meta property="og:description" content="Move an AI agent between 25 platforms without losing a single item. Runs in your browser.">
+<meta property="og:image" content="https://bargedot.fun/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Barge | Move your AI agent to any platform">
+<meta name="twitter:image" content="https://bargedot.fun/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/barge.css">
+</head>
+<body class="home">
+
+<svg class="sprite" width="0" height="0" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 80 100"><path fill="#ece7dd" fill-rule="evenodd" d="M0 0H74L63.5 44H0Z M19.5 16V28H51.5V16Z"/><path fill="#8f8f93" fill-rule="evenodd" d="M0 56H80L68.5 100H0Z M19.5 72V84H55.5V72Z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <nav class="left" aria-label="Main">
+      <a href="index.html" aria-current="page">Overview</a>
+      <a href="app.html">App</a>
+    </nav>
+    <a class="brand" href="index.html" aria-label="Barge home"><svg class="mark"><use href="#mark"/></svg><span>BARGE</span></a>
+    <div class="right">
+      <nav aria-label="More"><a href="harbor.html">Harbor</a><a href="#lineage">Lineage</a><a href="passport.html">Passports</a></nav>
+      <a class="btn sm solid" href="app.html">Open app</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="h-hero">
+    <div class="wrap">
+      <div class="h-top">
+        <p class="kicker">Agent portability on Robinhood Chain</p>
+        <button class="hero-ca" id="heroCa" type="button" disabled aria-label="Copy the $BARGE contract address">
+          <span class="hero-ca-tag">$BARGE</span>
+          <span class="hero-ca-lbl">CA</span>
+          <span class="hero-ca-val" id="heroCaVal">Published at launch</span>
+          <span class="hero-ca-copy" id="heroCaCopy" hidden>Copy</span>
+        </button>
+      </div>
+      <h1>Move your agent.<br><em>Keep every piece.</em></h1>
+
+      <div class="h-grid">
+        <div class="h-left">
+          <p class="lede">Barge moves an AI agent from the platform it was built on to the one you use next: instructions, memory, skills, commands, tools and permissions. You review every item before a single file is written.</p>
+          <div class="cta">
+            <a class="btn solid" href="app.html">Move an agent <span class="arrow">→</span></a>
+            <a class="btn" href="harbor.html">Browse the Harbor</a>
+          </div>
+          <form class="gh hero-gh" id="heroGh" autocomplete="off">
+            <div class="gh-label"><span class="gh-tag">Repo</span><span class="mono">Move any public GitHub repo</span></div>
+            <div class="gh-row">
+              <label class="gh-field"><span class="sr-only">Public GitHub repo</span><input id="heroGhUrl" type="text" inputmode="url" spellcheck="false" placeholder="github.com/owner/repo"></label>
+              <button class="btn solid" type="submit">Load <span class="arrow">→</span></button>
+            </div>
+          </form>
+        </div>
+
+        <div class="slip" aria-label="Live preview">
+          <div class="slip-head"><span class="mono">Manifest</span><span class="mono dim">Sample agent</span></div>
+          <div class="slip-route">
+            <label>From<select id="from" aria-label="From platform"></select></label>
+            <span class="join">→</span>
+            <label>To<select id="to" aria-label="To platform"></select></label>
+          </div>
+          <div class="slip-agent">
+            <h3 id="agentName">…</h3>
+            <p id="agentBlurb"></p>
+            <ul class="ledger" id="ledger"></ul>
+            <div class="tally" id="tally"></div>
+          </div>
+          <div class="slip-foot">
+            <div class="legend">
+              <span><i class="sq as-is"></i>As-is</span>
+              <span><i class="sq converted"></i>Converted</span>
+              <span><i class="sq none"></i>Kept in package</span>
+            </div>
+            <a class="btn sm" id="runLink" href="app.html">Run it <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="facts-strip">
+        <div><b>25</b><span>platforms</span></div>
+        <div><b>9</b><span>kinds of item</span></div>
+        <div><b>0</b><span>files uploaded</span></div>
+        <div><b>1</b><span>portable package</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="how">
+    <div class="sec-head">
+      <p class="kicker">How it works</p>
+      <h2>Load it. Cross over. <em>Land it.</em></h2>
+    </div>
+    <ol class="route">
+      <li>
+        <span class="stop">Load</span>
+        <p>Drop the folder your agent lives in, a zip, a public GitHub repo or a .barge package. Everything is read inside your browser.</p>
+      </li>
+      <li>
+        <span class="stop">Cross</span>
+        <p>Every item is sorted into one plain, versioned .barge package that records where it came from. Secrets are removed before anything moves.</p>
+      </li>
+      <li>
+        <span class="stop">Land</span>
+        <p>Pick the new platform. You get a zip laid out for it, a receipt of what changed, and the package to move it again later.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="sec wrap">
+    <div class="cargo">
+      <div class="sec-head">
+        <p class="kicker">What travels</p>
+        <h2>Nothing stays <em>on the dock.</em></h2>
+        <p>If the new platform has no equivalent for an item, it rides along inside the package, so nothing is lost.</p>
+      </div>
+      <dl class="cargo-list">
+        <div><dt>Instructions</dt><dd>Main prompt, rules and scoped rules with their globs.</dd></div>
+        <div><dt>Memory</dt><dd>Saved facts, profiles and daily notes.</dd></div>
+        <div><dt>Skills</dt><dd>Skill folders with their scripts and references.</dd></div>
+        <div><dt>Commands</dt><dd>Slash commands, prompts and workflows.</dd></div>
+        <div><dt>Subagents</dt><dd>Helpers with their own role and tools.</dd></div>
+        <div><dt>MCP servers</dt><dd>Local and remote servers, keys turned into variables.</dd></div>
+        <div><dt>Permissions</dt><dd>Allow, ask and deny rules where the platform supports them.</dd></div>
+        <div><dt>Identity</dt><dd>Name, persona and a stable agent ID.</dd></div>
+        <div><dt>Routines</dt><dd>Heartbeats and scheduled checks, paused until you switch them on.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="platforms">
+    <div class="sec-head row">
+      <div>
+        <p class="kicker">Where it lands</p>
+        <h2>25 platforms, <em>item by item.</em></h2>
+      </div>
+      <p>Each square shows how one kind of item lands on one platform. Hover a square for the detail.</p>
+    </div>
+    <div class="matrix-wrap"><table class="matrix" id="matrix"></table></div>
+    <div class="legend">
+      <span><i class="sq as-is"></i>Lands as-is</span>
+      <span><i class="sq converted"></i>Converted to the platform's own format</span>
+      <span><i class="sq none"></i>No equivalent, kept in the package</span>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="lineage">
+    <div class="sec-head">
+      <p class="kicker">Harbor and lineage</p>
+      <h2>Share an agent. <em>Prove every crossing.</em></h2>
+    </div>
+    <div class="dock">
+      <div class="dock-stats">
+        <div><b id="orchardCount">—</b><span>agents in the Harbor</span></div>
+        <div><b id="lnCount">—</b><span>lineages on-chain</span></div>
+        <div><b id="lnRings">—</b><span>crossings recorded</span></div>
+      </div>
+      <div class="dock-cols">
+        <div>
+          <h3>The Harbor</h3>
+          <p>A public library of agents. Publish once and anyone can move it onto the platform they use. Your wallet signs a message to prove you wrote it: no transaction, no fee. Secrets are stripped in your browser and again on arrival.</p>
+          <a class="btn" href="harbor.html">Visit the Harbor <span class="arrow">→</span></a>
+        </div>
+        <div>
+          <h3>Lineage</h3>
+          <p>Each crossing can be recorded on Robinhood Chain: the agent, the package fingerprint and the route it took. A permanent log of everywhere the agent has been.</p>
+          <a class="btn" href="app.html">Record a crossing <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="feed" id="feed" hidden>
+      <div class="feed-head">
+        <p class="kicker"><i class="live" aria-hidden="true"></i>Latest crossings</p>
+        <span class="mono dim">Live from the Harbor and Robinhood Chain</span>
+      </div>
+      <ul class="feed-list" id="feedList"></ul>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="promises">
+      <div><h3>Your files stay with you</h3><p>Barge is a static page. Your agent is read in your browser and never uploaded.</p></div>
+      <div><h3>Secrets never move</h3><p>Keys and tokens are found and removed before any export. Tools get a variable to fill in.</p></div>
+      <div><h3>The original is untouched</h3><p>Barge only reads. It writes a new bundle and never edits your source.</p></div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="token">
+    <div class="token">
+      <div>
+        <p class="kicker">Token</p>
+        <h2>$BARGE</h2>
+        <p class="copy">Barge is free for everyone. $BARGE is its token on Robinhood Chain. Hold 0.1% of the supply and the agents you publish carry a Holder badge and lead the Harbor.</p>
+      </div>
+      <div class="ca-box">
+        <p class="mono dim">Contract address</p>
+        <div class="ca-row">
+          <span id="ca">Published at launch</span>
+          <button class="btn sm" id="copyCa" type="button" disabled>Copy</button>
+        </div>
+        <div class="ca-links">
+          <a id="lnkTrade" class="btn sm" aria-disabled="true" target="_blank" rel="noopener">pons <span class="arrow">↗</span></a>
+          <a id="lnkChart" class="btn sm" aria-disabled="true" target="_blank" rel="noopener">DexScreener <span class="arrow">↗</span></a>
+          <a id="lnkExplorer" class="btn sm" aria-disabled="true" target="_blank" rel="noopener">Blockscout <span class="arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing wrap">
+    <h2>Same agent. <em>New platform.</em></h2>
+    <a class="btn solid" href="app.html">Move an agent <span class="arrow">→</span></a>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Barge home"><svg class="mark"><use href="#mark"/></svg><span>BARGE</span></a>
+    <nav aria-label="Footer">
+      <a href="app.html">App</a>
+      <a href="harbor.html">Harbor</a>
+      <a href="passport.html">Passports</a>
+      <a href="#token">$BARGE</a>
+      <a id="lnkX" href="#" target="_blank" rel="noopener" hidden>X</a>
+    </nav>
+    <small>© 2026 Barge</small>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/engine.js"></script>
+<script src="assets/js/samples.js"></script>
+<script src="assets/js/web3.js"></script>
+<script src="assets/js/landing.js"></script>
+</body>
+</html>

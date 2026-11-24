@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barge | Harbor</title>
+<meta name="description" content="A public library of AI agents. Open any of them in Barge and land it on any of 25 platforms, including Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI and Windsurf.">
+<meta name="theme-color" content="#0f0f0f">
+<meta property="og:title" content="Barge Harbor | Agents ready to cross">
+<meta property="og:image" content="https://bargedot.fun/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/barge.css">
+</head>
+<body>
+
+<svg class="sprite" width="0" height="0" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 80 100"><path fill="#ece7dd" fill-rule="evenodd" d="M0 0H74L63.5 44H0Z M19.5 16V28H51.5V16Z"/><path fill="#8f8f93" fill-rule="evenodd" d="M0 56H80L68.5 100H0Z M19.5 72V84H55.5V72Z"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <nav class="left" aria-label="Main">
+      <a href="index.html">Overview</a>
+      <a href="app.html">App</a>
+    </nav>
+    <a class="brand" href="index.html" aria-label="Barge home"><svg class="mark"><use href="#mark"/></svg><span>BARGE</span></a>
+    <div class="right">
+      <nav aria-label="More"><a href="harbor.html" aria-current="page">Harbor</a><a href="index.html#lineage">Lineage</a><a href="passport.html">Passports</a></nav>
+      <div class="tools" id="wallet">
+        <button class="btn sm" id="connect" type="button">Connect wallet</button>
+        <span class="wallet-on" id="walletOn" hidden><span class="mono" id="walletAddr"></span><button class="link" id="disconnect" type="button">Disconnect</button></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="orch-head wrap">
+    <div>
+      <p class="kicker">The Harbor</p>
+      <h1>Agents, <em>ready to cross.</em></h1>
+      <p class="sub">A public library of AI agents. Open any of them in Barge and land it on the platform you use. Secrets are stripped before anything is published.</p>
+    </div>
+    <dl class="stats" id="stats">
+      <div><dt>Agents</dt><dd id="sAgents">·</dd></div>
+      <div><dt>Authors</dt><dd id="sAuthors">·</dd></div>
+      <div><dt>Crossings</dt><dd id="sRings">·</dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap">
+    <div class="toolbar">
+      <label class="search"><span class="sr-only">Search agents</span><input id="q" type="search" placeholder="Search agents" autocomplete="off" spellcheck="false"></label>
+      <label class="tb-select"><span class="sr-only">Platform</span><select id="platform"><option value="">All platforms</option></select></label>
+      <label class="tb-select"><span class="sr-only">Sort</span>
+        <select id="sort">
+          <option value="new">Newest</option>
+          <option value="complete">Most complete</option>
+          <option value="rings">Most crossings</option>
+        </select>
+      </label>
+      <label class="toggle"><input type="checkbox" id="holdersOnly"><span class="tg"></span>Holders only</label>
+      <a class="btn solid sm" href="app.html">Publish an agent <span class="arrow">→</span></a>
+    </div>
+    <p class="note" id="note" hidden></p>
+    <div class="grid" id="grid" aria-live="polite"></div>
+    <div class="empty" id="empty" hidden>
+      <svg aria-hidden="true"><use href="#mark"/></svg>
+      <p class="empty-title" id="emptyTitle">Nothing planted yet.</p>
+      <p class="empty-sub" id="emptySub">Open Barge, load your agent and publish it. It will appear here.</p>
+      <a class="btn solid" href="app.html">Open Barge <span class="arrow">→</span></a>
+    </div>
+  </section>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="dName" role="dialog">
+  <div class="drawer-head">
+    <span class="mono dim" id="dSource"></span>
+    <button class="link" id="dClose" type="button">Close</button>
+  </div>
+  <div class="drawer-body">
+    <h2 id="dName"></h2>
+    <p class="d-desc" id="dDesc"></p>
+    <div class="badges" id="dBadges"></div>
+    <dl class="d-facts">
+      <div><dt>Author</dt><dd><a id="dAuthor" target="_blank" rel="noopener"></a></dd></div>
+      <div><dt>Published</dt><dd id="dDate"></dd></div>
+      <div><dt>Size</dt><dd id="dSize"></dd></div>
+      <div><dt>Lineage</dt><dd id="dLineage"></dd></div>
+    </dl>
+    <p class="mono dim d-label">Manifest</p>
+    <ul class="d-kinds" id="dKinds"></ul>
+    <div class="d-actions">
+      <a class="btn solid wide" id="dOpen" href="#">Open in Barge <span class="arrow">→</span></a>
+      <button class="btn wide" id="dDownload" type="button">Download .barge</button>
+      <button class="btn wide" id="dCopy" type="button">Copy link</button>
+      <button class="link danger" id="dRemove" type="button" hidden>Remove from the Harbor</button>
+    </div>
+  </div>
+</aside>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Barge home"><svg class="mark"><use href="#mark"/></svg><span>BARGE</span></a>
+    <nav aria-label="Footer">
+      <a href="app.html">App</a>
+      <a href="harbor.html">Harbor</a>
+      <a href="index.html#token">$BARGE</a>
+      <a id="lnkX" href="#" target="_blank" rel="noopener" hidden>X</a>
+    </nav>
+    <small>© 2026 Barge</small>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/engine.js"></script>
+<script src="assets/js/web3.js"></script>
+<script src="assets/js/orchard.js"></script>
+</body>
+</html>
