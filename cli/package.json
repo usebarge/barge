@@ -1,0 +1,12 @@
+{
+  "name": "bargedot",
+  "version": "1.0.0",
+  "description": "Move an AI agent between 25 platforms from your terminal: Claude Code, Codex, Cursor, Gemini CLI, Windsurf, GitHub Copilot and more. Barge V3.",
+  "bin": { "bargedot": "bin/barge.js" },
+  "files": ["bin/", "engine.js", "README.md"],
+  "scripts": { "prepack": "node -e \"require('fs').copyFileSync('../web/site/assets/js/engine.js','engine.js')\"" },
+  "engines": { "node": ">=18" },
+  "keywords": ["ai", "agent", "claude-code", "codex", "cursor", "gemini-cli", "windsurf", "copilot", "mcp", "agents-md", "barge"],
+  "homepage": "https://bargedot.fun",
+  "license": "MIT"
+}
